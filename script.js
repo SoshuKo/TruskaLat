@@ -9,7 +9,11 @@ function getRandomElement(arr) {
 }
 
 function isFemaleWord(headConsonant) {
-    return /^(ņ|ç|çļ|sç|sçļ|ģ|ģl|ç|çļ|çh|çhļ|ļ)$/.test(headConsonant) || random() < 0.5;
+    return /^(ņ|ç|çļ|sç|sçļ|ģ|ģl|ç|çļ|çh|çhļ|ļ)$/.test(headConsonant);
+}
+
+function isMaleWord(headConsonant) {
+    return /^(k|kr|sk|skr|g|gr|x|xr|r)$/.test(headConsonant);
 }
 
 function replaceFemaleConsonant(consonant) {
@@ -31,6 +35,7 @@ function generateWord() {
     word += headConsonant;
 
     let isFemale = isFemaleWord(headConsonant);
+    let isMale = isMaleWord(headConsonant);
     let vowels = isFemale ? femaleVowels : maleVowels;
     let vowel = getRandomElement(vowels);
     if (random() < 0.2) {
