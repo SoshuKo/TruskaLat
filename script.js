@@ -57,7 +57,7 @@ function generateWord() {
         }
         word += secondHeadConsonant;
 
-        let secondVowel = getRandomElement(vowels);
+        let secondVowel = getRandomElement(isFemaleWord(secondHeadConsonant) ? femaleVowels : maleVowels);
         if (random() < 0.2) {
             secondVowel += "gh";
         }
@@ -77,7 +77,7 @@ function generateWord() {
             }
             word += thirdHeadConsonant;
 
-            let thirdVowel = getRandomElement(vowels);
+            let thirdVowel = getRandomElement(isFemaleWord(thirdHeadConsonant) ? femaleVowels : maleVowels);
             if (random() < 0.2) {
                 thirdVowel += "gh";
             }
