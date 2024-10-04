@@ -2,13 +2,14 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Word Generator</title>
+    <title>トルスカ語単語生成器</title>
 </head>
 <body>
     <h1>トルスカ語単語生成器</h1>
-    <button onclick="generateWord()">単語を生成する</button>
-    <p id="generatedWord"></p>
-    <p id="vowelType"></p>
+    <label for="wordCount">生成する単語の数:</label>
+    <input type="number" id="wordCount" min="1" value="1">
+    <button onclick="generateWords()">単語を生成する</button>
+    <div id="generatedWords"></div>
 
     <script src="script.js"></script>
 </body>
