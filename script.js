@@ -46,37 +46,37 @@ function replaceMaleConsonant(consonant) {
 }
 
 function convertToMale(word) {
-    return word.replace(/i/g, "ï")
-               .replace(/ü/g, "u")
-               .replace(/e/g, "ë")
-               .replace(/ö/g, "o")
-               .replace(/ņ/g, "n")
-               .replace(/ç/g, "k")
+    return word.replace(/çhļ/g, "xr")
+               .replace(/sçļ/g, "skl")
                .replace(/çļ/g, "kl")
                .replace(/sç/g, "sk")
-               .replace(/sçļ/g, "skl")
-               .replace(/ģ/g, "g")
-               .replace(/ģl/g, "gl")
                .replace(/çh/g, "x")
-               .replace(/çhļ/g, "xr")
-               .replace(/ļ/g, "r");
+               .replace(/ģl/g, "gl")
+               .replace(/ņ/g, "n")
+               .replace(/ç/g, "k")
+               .replace(/ģ/g, "g")
+               .replace(/ļ/g, "r")
+               .replace(/i/g, "ï")
+               .replace(/ü/g, "u")
+               .replace(/e/g, "ë")
+               .replace(/ö/g, "o");
 }
 
 function convertToFemale(word) {
-    return word.replace(/ï/g, "i")
-               .replace(/u/g, "ü")
-               .replace(/ë/g, "e")
-               .replace(/o/g, "ö")
-               .replace(/n/g, "ņ")
-               .replace(/k/g, "ç")
+    return word.replace(/xr/g, "çhļ")
+               .replace(/skl/g, "sçļ")
                .replace(/kl/g, "çļ")
                .replace(/sk/g, "sç")
-               .replace(/skl/g, "sçļ")
-               .replace(/g/g, "ģ")
-               .replace(/gl/g, "ģl")
                .replace(/x/g, "çh")
-               .replace(/xr/g, "çhļ")
-               .replace(/r/g, "ļ");
+               .replace(/gl/g, "ģl")
+               .replace(/n/g, "ņ")
+               .replace(/k/g, "ç")
+               .replace(/g/g, "ģ")
+               .replace(/r/g, "ļ")
+               .replace(/ï/g, "i")
+               .replace(/u/g, "ü")
+               .replace(/ë/g, "e")
+               .replace(/o/g, "ö");
 }
 
 function generateWord() {
