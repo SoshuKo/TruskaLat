@@ -29,6 +29,56 @@ function replaceFemaleConsonant(consonant) {
     }
 }
 
+function replaceMaleConsonant(consonant) {
+    switch (consonant) {
+        case "ņ": return "n";
+        case "ç": return "k";
+        case "çļ": return "kl";
+        case "sç": return "sk";
+        case "sçļ": return "skl";
+        case "ģ": return "g";
+        case "ģl": return "gl";
+        case "çh": return "x";
+        case "çhļ": return "xr";
+        case "ļ": return "r";
+        default: return consonant;
+    }
+}
+
+function convertToMale(word) {
+    return word.replace(/i/g, "ï")
+               .replace(/ü/g, "u")
+               .replace(/e/g, "ë")
+               .replace(/ö/g, "o")
+               .replace(/ņ/g, "n")
+               .replace(/ç/g, "k")
+               .replace(/çļ/g, "kl")
+               .replace(/sç/g, "sk")
+               .replace(/sçļ/g, "skl")
+               .replace(/ģ/g, "g")
+               .replace(/ģl/g, "gl")
+               .replace(/çh/g, "x")
+               .replace(/çhļ/g, "xr")
+               .replace(/ļ/g, "r");
+}
+
+function convertToFemale(word) {
+    return word.replace(/ï/g, "i")
+               .replace(/u/g, "ü")
+               .replace(/ë/g, "e")
+               .replace(/o/g, "ö")
+               .replace(/n/g, "ņ")
+               .replace(/k/g, "ç")
+               .replace(/kl/g, "çļ")
+               .replace(/sk/g, "sç")
+               .replace(/skl/g, "sçļ")
+               .replace(/g/g, "ģ")
+               .replace(/gl/g, "ģl")
+               .replace(/x/g, "çh")
+               .replace(/xr/g, "çhļ")
+               .replace(/r/g, "ļ");
+}
+
 function generateWord() {
     let word = "";
     let headConsonant = getRandomElement(headConsonants);
@@ -74,6 +124,12 @@ function generateWord() {
         }
     }
 
+    if (isFemale) {
+        word = convertToFemale(word);
+    } else {
+        word = convertToMale(word);
+    }
+
     return word;
 }
 
@@ -85,7 +141,7 @@ function generateWords() {
     for (let i = 0; i < wordCount; i++) {
         let word = generateWord();
         let wordElement = document.createElement("p");
-        wordElement.innerText = `Generated Word: ${word}`;
+        wordElement.innerText = word;
         generatedWordsDiv.appendChild(wordElement);
     }
 }
