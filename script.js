@@ -38,8 +38,10 @@ function generateWord() {
     let isMale = isMaleWord(headConsonant);
     let vowels = isFemale ? femaleVowels : maleVowels;
     let vowel = getRandomElement(vowels);
+    let hasLongVowel = false;
     if (random() < 0.2) {
         vowel += "gh";
+        hasLongVowel = true;
     }
     word += vowel;
 
@@ -47,45 +49,28 @@ function generateWord() {
         word += getRandomElement(endConsonants);
     }
 
-    if (random() < 0.5) {
-        let secondHeadConsonant = getRandomElement(headConsonants);
-        if (secondHeadConsonant === "") {
-            secondHeadConsonant = "'";
+    const syllableCount = document.getElementById("syllableCount").value;
+    const maxSyllables = syllableCount === "random" ? (random() < 0.5 ? 2 : 3) : parseInt(syllableCount);
+
+    for (let i = 1; i < maxSyllables; i++) {
+        let nextHeadConsonant = getRandomElement(headConsonants);
+        if (nextHeadConsonant === "") {
+            nextHeadConsonant = "'";
         }
         if (isFemale) {
-            secondHeadConsonant = replaceFemaleConsonant(secondHeadConsonant);
+            nextHeadConsonant = replaceFemaleConsonant(nextHeadConsonant);
         }
-        word += secondHeadConsonant;
+        word += nextHeadConsonant;
 
-        let secondVowel = getRandomElement(isFemaleWord(secondHeadConsonant) ? femaleVowels : maleVowels);
-        if (random() < 0.2) {
-            secondVowel += "gh";
+        let nextVowel = getRandomElement(vowels);
+        if (!hasLongVowel && random() < 0.2) {
+            nextVowel += "gh";
+            hasLongVowel = true;
         }
-        word += secondVowel;
+        word += nextVowel;
 
         if (random() < 0.2) {
             word += getRandomElement(endConsonants);
-        }
-
-        if (random() < 0.33) {
-            let thirdHeadConsonant = getRandomElement(headConsonants);
-            if (thirdHeadConsonant === "") {
-                thirdHeadConsonant = "'";
-            }
-            if (isFemale) {
-                thirdHeadConsonant = replaceFemaleConsonant(thirdHeadConsonant);
-            }
-            word += thirdHeadConsonant;
-
-            let thirdVowel = getRandomElement(isFemaleWord(thirdHeadConsonant) ? femaleVowels : maleVowels);
-            if (random() < 0.2) {
-                thirdVowel += "gh";
-            }
-            word += thirdVowel;
-
-            if (random() < 0.2) {
-                word += getRandomElement(endConsonants);
-            }
         }
     }
 
