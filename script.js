@@ -1,4 +1,5 @@
-const headConsonants = ["m", "p", "pr", "sp", "spr", "b", "br", "f", "fr", "v", "n", "t", "tr", "st", "str", "d", "dr", "c", "cl", "sc", "scl", "s", "sl", "z", "r", "l", "ch", "chr", "sch", "schr", "sh", "shr", "j", "ņ", "ç", "çļ", "sç", "sçļ", "ģ", "ģl", "ç", "çļ", "çh", "çhļ", "y", "ļ", "k", "kr", "sk", "skr", "g", "gr", "x", "xr", "w", ""];
+const headConsonants = ["m", "p", "pr", "b", "br", "f", "fr", "v", "n", "t", "tr", "d", "dr", "c", "cl", "s", "sl", "z", "r", "l", "ch", "chr", "sh", "shr", "j", "y", "k", "kr", "g", "gr", "x", "xr", "w", ""];
+const specialConsonants = ["pr", "br", "fr", "tr", "dr", "cl", "sl", "chr", "shr", "kr", "gr", "xr"];
 const maleVowels = ["ï", "u", "ë", "o", "a"];
 const femaleVowels = ["i", "ü", "e", "ö", "a"];
 const endConsonants = ["m", "p", "b", "f", "v", "n", "t", "d", "c", "s", "z", "l", "ch", "sh", "j", "ņ", "ç", "ģ", "çh", "ļ", "ng", "k", "g", "x"];
@@ -6,6 +7,10 @@ const random = Math.random;
 
 function getRandomElement(arr) {
     return arr[Math.floor(random() * arr.length)];
+}
+
+function getRandomHeadConsonant() {
+    return random() < 1/3 ? getRandomElement(specialConsonants) : getRandomElement(headConsonants);
 }
 
 function isFemaleWord(headConsonant) {
@@ -89,7 +94,7 @@ function generateWord() {
     let vowels = isFemale ? femaleVowels : maleVowels;
     let vowel = getRandomElement(vowels);
     let hasLongVowel = false;
-    if (random() < 0.2) {
+    if (random() < 1/8) {
         vowel += "gh";
         hasLongVowel = true;
     }
@@ -99,48 +104,7 @@ function generateWord() {
         word += getRandomElement(endConsonants);
     }
 
-    const syllableCount = document.getElementById("syllableCount").value;
-    const maxSyllables = syllableCount === "random" ? (random() < 0.5 ? 2 : 3) : parseInt(syllableCount);
-
-    for (let i = 1; i < maxSyllables; i++) {
-        let nextHeadConsonant = getRandomElement(headConsonants);
-        if (nextHeadConsonant === "") {
-            nextHeadConsonant = "'";
-        }
-        if (isFemale) {
-            nextHeadConsonant = replaceFemaleConsonant(nextHeadConsonant);
-        }
-        word += nextHeadConsonant;
-
-        let nextVowel = getRandomElement(vowels);
-        if (!hasLongVowel && random() < 0.2) {
-            nextVowel += "gh";
-            hasLongVowel = true;
-        }
-        word += nextVowel;
-
-        if (random() < 0.2) {
-            word += getRandomElement(endConsonants);
-        }
-    }
-
-    if (isFemale) {
-        word = convertToFemale(word);
-    } else {
-        word = convertToMale(word);
-    }
-
-    return word;
-}
-
-function generateWords() {
-    const wordCount = document.getElementById("wordCount").value;
-    const generatedWordsDiv = document.getElementById("generatedWords");
-    generatedWordsDiv.innerHTML = "";
-
-    for (let i = 0; i < wordCount; i++) {
-        let word = generateWord();
-        let wordElement = document.createElement("p");
+    const syllableCount =
         wordElement.innerText = word;
         generatedWordsDiv.appendChild(wordElement);
     }
