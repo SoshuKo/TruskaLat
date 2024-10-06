@@ -3,6 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>トルスカ語単語生成器</title>
+    <style>
+        body {
+            background-color: #2C83FF;
+            color: #FFD320;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #FFD320;
+        }
+        label, button {
+            color: #2C83FF;
+            background-color: #FFD320;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FFB320;
+        }
+        #generatedWords {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>トルスカ語単語生成器</h1>
@@ -17,7 +43,10 @@
     </select>
     <button onclick="generateWords()">単語を生成する</button>
     <div id="generatedWords"></div>
-
+    <footer>
+        <p>バージョン 2.0</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
+
