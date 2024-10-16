@@ -107,7 +107,7 @@ function generateWord() {
     }
 
     const syllableCount = document.getElementById("syllableCount").value;
-    const maxSyllables = syllableCount === "random" ? (random() < 2/3 ? 2 : (random() < 1/5 ? 3 : 1)) : parseInt(syllableCount);
+    const maxSyllables = syllableCount === "random" ? (random() < 4/5 ? 2 : (random() < 1/5 ? 3 : 1)) : parseInt(syllableCount);
 
     for (let i = 1; i < maxSyllables; i++) {
         let nextHeadConsonant = getRandomHeadConsonant(false);
